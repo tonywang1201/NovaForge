@@ -23,6 +23,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"/>
   <img src="https://img.shields.io/badge/LaTeX-xelatex-green.svg" alt="LaTeX"/>
+  <img src="https://img.shields.io/badge/Typst-typst-rgb(0%2C%20130%2C%20200)" alt="Typst"/>
   <img src="https://img.shields.io/badge/markdown-ready-brightgreen.svg" alt="Markdown"/>
   <a href="NovaForge.skill"><img src="https://img.shields.io/badge/Claude-Skill-8A2BE2" alt="Claude Skill"/></a>
 </p>
@@ -30,6 +31,12 @@
 ---
 
 ## 📋 更新日志
+
+### 2026/5/15 19:50
+- **新增 Typst 模板版本**：提供 `typst/preamble.typ` + `typst/template.typ`，语法更现代、编译更快（单次编译，无需多遍）
+- **三种输出格式**：Intake 流程扩展为 LaTeX（默认）/ Typst / Markdown 三选一
+- **NovaForge.skill 同步**：已与本地 SKILL.md 内容完全一致（修复上次遗留问题）
+- **README 更新**：新增 Typst 安装指引、模板目录、编译命令
 
 ### 2026/5/15 17:47
 - **重构 NovaForge 模板体系**：从 3 种模式扩展至 **6 种模式**，新增考研、考公、项目三个专属模式
@@ -59,7 +66,7 @@
 
 | 特性 | 说明 |
 |------|------|
-| **双版本支持** | LaTeX（精美 PDF）+ Markdown（即写即用） |
+| **三版本支持** | LaTeX（经典 PDF）/ Typst（现代 PDF）/ Markdown（即写即用） |
 | **7 步模块化结构** | 概念→原理→方法→示例→实战→练习→复盘 |
 | **领域无关** | 不预设学科，理科文科工科医科均可 |
 | **6 种场景模板** | 章节笔记 / 期末复习 / 考研 / 考公 / 科研文献 / 项目总结 |
@@ -81,6 +88,10 @@ cd NovaForge
 cd latex
 # 编辑 template.tex → xelatex template.tex
 
+#   Typst 版（需安装 Typst）
+cd typst
+# 编辑 template.typ → typst compile template.typ
+
 #   Markdown 版（任意编辑器打开）
 cd markdown
 # 直接用 VS Code / Obsidian 编辑 .md 文件
@@ -89,7 +100,9 @@ cd markdown
 # 将 NovaForge.skill 放入 .claude/skills/ 目录即可
 ```
 
-### 安装依赖（LaTeX 版）
+### 安装依赖
+
+**LaTeX 版：**
 
 ```bash
 # Windows（推荐 TeX Live）
@@ -100,6 +113,23 @@ brew install --cask mactex
 
 # Linux
 sudo apt install texlive-xetex texlive-latex-extra
+```
+
+**Typst 版：**
+
+```bash
+# 方式一：Cargo 安装（推荐）
+cargo install typst-cli
+
+# 方式二：直接下载二进制
+# 访问 https://github.com/typst/typst/releases
+
+# macOS Homebrew
+brew install typst
+
+# 编译
+typst compile template.typ    # 生成 PDF
+typst watch template.typ      # 实时预览（修改后自动重编译）
 ```
 
 ## 📂 模板体系
@@ -124,6 +154,10 @@ NovaForge/
 ├── latex/                             # LaTeX 版（PDF 输出）
 │   ├── preamble.tex                   #   导言区 — 可独立 \input{}
 │   └── template.tex                   #   完整可编译模板（封面→目录→正文→附录）
+│
+├── typst/                             # Typst 版（PDF 输出，语法更现代）
+│   ├── preamble.typ                   #   共享样式与自定义函数
+│   └── template.typ                   #   完整可编译模板
 │
 ├── markdown/                          # Markdown 版（快速记录）
 │   ├── chapter-notes.md               #   章节笔记模板
@@ -297,6 +331,7 @@ Skill 会在必要时自动用 tikz（LaTeX）生成辅助理解的示意图。
 
 - 默认输出文件夹：`NovaForge-Output-<project-name>/`
 - LaTeX 模式：`.tex` + 编译 `.pdf`
+- Typst 模式：`.typ` + 编译 `.pdf`
 - Markdown 模式：`.md`
 - 所有文件在该文件夹内，不散落在外
 
@@ -305,14 +340,17 @@ Skill 会在必要时自动用 tikz（LaTeX）生成辅助理解的示意图。
 ## 🛠 编译与排错
 
 ```bash
-# 一键编译（Windows）
+# LaTeX 一键编译（Windows）
 scripts\compile.bat
 
-# 手动编译
+# LaTeX 手动编译
 cd latex
 xelatex template.tex    # 第 1 遍：生成 .toc
 xelatex template.tex    # 第 2 遍：解析引用
-# 目录不完整？再编译第 3 遍
+
+# Typst 编译（一次完成，无需多遍）
+cd typst
+typst compile template.typ
 
 # 清理中间文件
 rm *.aux *.log *.out *.toc

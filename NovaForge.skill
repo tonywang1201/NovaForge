@@ -1,6 +1,6 @@
 ---
 name: NovaForge
-description: NovaForge 通用知识笔记模板 — 将任意学科/项目的知识体系整理为结构化笔记。LaTeX+Markdown双版本，支持章节笔记（7步结构）、期末复习（真题分类+留白练习）、考研（7步+考研真题）、考公（行测/申论/面试）、科研（文献+笔记+方法）、项目（架构+进度+复盘）六种模式，适配考研/考公/专业课/科研/项目/竞赛。
+description: NovaForge 通用知识笔记模板 — 将任意学科/项目的知识体系整理为结构化笔记。LaTeX+Typst+Markdown三版本，支持章节笔记（7步结构）、期末复习（真题分类+留白练习）、考研（7步+考研真题）、考公（行测/申论/面试）、科研（文献+笔记+方法）、项目（架构+进度+复盘）六种模式，适配考研/考公/专业课/科研/项目/竞赛。
 ---
 
 # NovaForge — 通用知识笔记模板
@@ -11,8 +11,8 @@ description: NovaForge 通用知识笔记模板 — 将任意学科/项目的知
 
 ## Non-Negotiables
 
-- **REQUIRED COMPANION SKILL:** 需要编译 PDF 时使用 `pdf` skill 进行编译输出。
-- 默认以 LaTeX 模板生成源文件并编译 PDF，除非用户明确要求只生成 Markdown。
+- **REQUIRED COMPANION SKILL:** LaTeX/Typst 模式需要编译 PDF 时使用 `pdf` skill 进行编译输出。Typst 模式下使用 `typst compile` 命令编译。
+- 支持三种输出格式，用户在 Intake 阶段选择：**LaTeX**（编译 PDF，默认）、**Typst**（编译 PDF，语法更现代）、**Markdown**（纯文本即时记录）。
 - 支持六种模板模式，用户在 Intake 阶段确认选择：
   - **章节笔记模式**（7 步结构）：每节含概念引入→核心公式→方法速通→典型示例→真题实战→巩固练习→总结复盘
   - **期末复习模式**（真题分类）：按考试题型组织→考法归纳→真题年份标签→方法速通→练习留白→答案统一放末尾
@@ -34,6 +34,7 @@ description: NovaForge 通用知识笔记模板 — 将任意学科/项目的知
 默认成功结果：
 
 - LaTeX 模式：保存 `.tex` 源文件 + 编译后的 `.pdf`
+- Typst 模式：保存 `.typ` 源文件 + 编译后的 `.pdf`
 - Markdown 模式：保存 `.md` 文件
 - 所有生成文件放入 `NovaForge-Output-<project-name>/` 文件夹
 - 最终回复报告生成的文件路径
@@ -139,7 +140,7 @@ digraph novaforge_flow {
 ## Step 1. Intake
 
 - 确认用户要整理什么学科/项目
-- 确认用 LaTeX（编译 PDF）还是 Markdown
+- 确认用 LaTeX（编译 PDF，默认）、Typst（编译 PDF）还是 Markdown（纯文本）
 - 确认输出路径（默认当前工作目录下的 `NovaForge-Output-<project-name>/`）
 - 确认覆盖范围（全部内容还是指定章节）
 - **确认模板模式**（以下全部以选择题供用户选择）：
@@ -156,12 +157,13 @@ Default style：
 - layout：single-column
 - purpose：知识整理 / 考试复习 / 科研文献整理
 - tone：清晰、结构化、不啰嗦
-- output：`.tex` + `.pdf`（LaTeX 模式）或 `.md`（Markdown 模式），放入 `NovaForge-Output-<project-name>/`
+- output：`.tex` + `.pdf`（LaTeX 模式）、`.typ` + `.pdf`（Typst 模式）或 `.md`（Markdown 模式），放入 `NovaForge-Output-<project-name>/`
 
 ## Step 2. Check Build Environment
 
 - LaTeX 模式：确认 `xelatex` 可用
-- 如果 `xelatex` 缺失但有 LaTeX 需求，报告环境问题
+- Typst 模式：确认 `typst` 可用（安装方式：`cargo install typst-cli` 或从 https://github.com/typst/typst/releases 下载）
+- 如果 `xelatex`/`typst` 缺失但有 PDF 需求，报告环境问题
 
 ## Step 3. Understand Knowledge Structure
 
@@ -777,7 +779,9 @@ APPROVED 后才进入文件生成阶段。
 ## Build and Final Artifact Check
 
 - LaTeX 模式：`xelatex` × 2 遍编译
-- 确认 `.tex` / `.md` 已写入磁盘
+- Typst 模式：`typst compile <filename>.typ` 编译
+- Markdown 模式：无需编译，确认 `.md` 已写入磁盘
+- 确认 `.tex` / `.typ` / `.md` 已写入磁盘
 - 确认 `.pdf` 编译成功（exit status = 0）
 - 检查最终 PDF 是否有：乱码、公式错误、排版问题、中文渲染失败
 - 所有文件必须在 `NovaForge-Output-<project-name>/` 内
@@ -792,7 +796,8 @@ APPROVED 后才进入文件生成阶段。
 
 - 输出文件夹：`NovaForge-Output-<project-name>/`
 - LaTeX 源文件：`<project-name>-notes.tex`
-- 编译 PDF：`<project-name>-notes.pdf`
+- Typst 源文件：`<project-name>-notes.typ`
+- 编译 PDF：`<project-name>-notes.pdf`（LaTeX/Typst 模式）
 - Markdown 文件：`<project-name>-notes.md`
 - 中间辅助文件：同样放在输出文件夹内
 
@@ -816,7 +821,7 @@ APPROVED 后才进入文件生成阶段。
 - 文件散落在工作目录而非输出文件夹
 - LaTeX 编译失败但声称完成
 - 公式语法错误导致编译中断
-- 只写 `.tex` 不编译 PDF（LaTeX 模式下）
+- 只写 `.tex`/`.typ` 不编译 PDF（LaTeX/Typst 模式下）
 
 ## Red Flags
 

@@ -26,13 +26,16 @@ echo 正在创建项目：%PROJ_NAME%
 mkdir "%TARGET_DIR%"
 mkdir "%TARGET_DIR%\assets"
 mkdir "%TARGET_DIR%\latex"
+mkdir "%TARGET_DIR%\typst"
 
 rem 拷贝模板
 copy "%~dp0..\latex\template.tex" "%TARGET_DIR%\latex\" >nul
 copy "%~dp0..\latex\preamble.tex" "%TARGET_DIR%\latex\" >nul
+copy "%~dp0..\typst\template.typ" "%TARGET_DIR%\typst\" >nul
+copy "%~dp0..\typst\preamble.typ" "%TARGET_DIR%\typst\" >nul
 
 echo.
 echo ✅ 项目已创建！
 echo 📁 %TARGET_DIR%
-echo 编辑 latex\template.tex 开始你的笔记之旅！
+echo 编辑 latex\template.tex 或 typst\template.typ 开始你的笔记之旅！
 pause

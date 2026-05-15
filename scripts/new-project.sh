@@ -13,10 +13,12 @@ if [ -d "$TARGET_DIR" ]; then
 fi
 
 echo "创建项目: $PROJ_NAME"
-mkdir -p "$TARGET_DIR"/{assets,latex}
+mkdir -p "$TARGET_DIR"/{assets,latex,typst}
 
 cp "$(dirname "$0")/../latex/template.tex" "$TARGET_DIR/latex/"
 cp "$(dirname "$0")/../latex/preamble.tex" "$TARGET_DIR/latex/"
+cp "$(dirname "$0")/../typst/template.typ" "$TARGET_DIR/typst/"
+cp "$(dirname "$0")/../typst/preamble.typ" "$TARGET_DIR/typst/"
 
 echo "✅ 项目已创建: $TARGET_DIR"
-echo "编辑 $TARGET_DIR/latex/template.tex 开始你的笔记之旅！"
+echo "编辑 $TARGET_DIR/latex/template.tex 或 $TARGET_DIR/typst/template.typ 开始你的笔记之旅！"
