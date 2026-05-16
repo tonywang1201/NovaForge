@@ -11,7 +11,6 @@ description: NovaForge 通用知识笔记模板 — 将任意学科/项目的知
 
 ## Non-Negotiables
 
-- **REQUIRED COMPANION SKILL:** LaTeX/Typst 模式需要编译 PDF 时使用 `pdf` skill 进行编译输出。Typst 模式下使用 `typst compile` 命令编译。
 - 支持三种输出格式，用 AskUserQuestion 让用户选择（如果用户没明确说用哪个）：**LaTeX**（编译 PDF，默认）、**Typst**（编译 PDF，语法更现代）、**Markdown**（纯文本即时记录）。
 - 支持六种模板模式，Intake 时按以下规则处理：
   - **用户已明确指定类型**（如"期末速成""考研笔记""整理文献""项目总结"）→ 直接推断模式，不弹出模式选择
