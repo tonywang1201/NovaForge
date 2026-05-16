@@ -34,7 +34,6 @@
 
 ### 2026/5/16 23:22
 - **移除 pdf companion 依赖**：NovaForge 独立完成 LaTeX 编译，不再依赖 pdf skill
-- **NovaForge.skill 同步**：更新 SKILL.md 至本地最新版
 
 ### 2026/5/16 23:13
 - **新增 .claude/skills/NovaForge.skill**：克隆后 Claude Code 自动识别 `/novaforge` 命令，无需手动复制
