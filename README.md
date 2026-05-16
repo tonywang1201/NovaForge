@@ -32,7 +32,7 @@
 
 ## 📋 更新日志
 
-### 2026/5/16 23:00
+### 2026/5/16 23:13
 - **新增 .claude/skills/NovaForge.skill**：克隆后 Claude Code 自动识别 `/novaforge` 命令，无需手动复制
 - **NovaForge.skill 更新**：
   - Intake 模式选择优化：明确指令直接推断，模糊指令按上下文给出 2~4 个选项
