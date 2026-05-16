@@ -384,6 +384,11 @@ Controller 合并所有 segment 笔记为连贯的结构化草稿。
 - 易懂：关键术语首次出现加括号标注英文；能用图示的配图；对比性内容用表格
 - 用户可随时要求"精简"（压缩边缘知识）或"补充"（对某部分深入展开）
 
+### 中文引号规则
+- 中文正文中必须使用 Unicode 弯引号："\textbf{""}"（U+201C/U+201D），不可使用 ASCII 直引号 "（U+0022）
+- 直引号在 xelatex 中渲染方向完全错误，编辑器应设置自动替换直引号为弯引号
+- 代码/命令等非中文上下文中仍可使用直引号
+
 ### 通用风格规则
 - 中文为主
 - 关键术语如需保留英文加括号标注
@@ -494,6 +499,7 @@ APPROVED 后才进入文件生成阶段。
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[top=1.4cm,bottom=1.2cm,left=1.0cm,right=1.0cm,includehead]{geometry}
 \usepackage{xcolor,enumitem,array,booktabs,multirow,fancyhdr,titlesec,hyperref,environ}
+\hypersetup{hidelinks}
 ```
 
 **颜色系统：** 深蓝主标题、墨绿节标题、橙红强调、紫红真题、蓝色提示、绿色练习、棕色习题、浅蓝灰标题背景。
@@ -779,6 +785,9 @@ APPROVED 后才进入文件生成阶段。
 ## Build and Final Artifact Check
 
 - LaTeX 模式：`xelatex` × 2 遍编译
+- 编译完成后清理辅助文件：`.aux`、`.log`、`.out`、`.toc`、`*.synctex.gz`、`.fdb_latexmk`、`.fls`、`.xdv` 等
+- 清理方式一：使用 `scripts/compile.sh`（macOS/Linux）或 `scripts/compile.bat`（Windows）一键编译+清理
+- 清理方式二：手动编译后执行 `rm -f *.aux *.log *.out *.toc *.fdb_latexmk *.fls *.xdv *.synctex.gz`（Unix）或 `del *.aux *.log *.out *.toc *.fdb_latexmk *.fls *.xdv *.synctex.gz`（Windows）
 - Typst 模式：`typst compile <filename>.typ` 编译
 - Markdown 模式：无需编译，确认 `.md` 已写入磁盘
 - 确认 `.tex` / `.typ` / `.md` 已写入磁盘

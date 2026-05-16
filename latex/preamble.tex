@@ -8,6 +8,10 @@
 \setCJKmainfont{SimSun}
 \usepackage{indentfirst}
 
+%% ── 中文引号（重要） ──
+%% 必须使用 Unicode 弯引号：“”(U+201C/U+201D)，不可使用 ASCII 直引号 " (U+0022)
+%% 直引号在 xelatex 中渲染方向错误，编辑器中请设置自动替换直引号为弯引号
+
 %% ── 数学/公式（非理工科可移除） ──
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{cancel}
@@ -26,7 +30,7 @@
 \usepackage{environ}
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing,patterns,arrows.meta}
-\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black}
+\hypersetup{hidelinks}
 
 %% ── 颜色系统 ──
 \definecolor{titlecolor}{HTML}{1a237e}

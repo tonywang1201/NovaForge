@@ -2,7 +2,8 @@
 %% ══════════════════════════════════════════════════════════════════
 %%  NovaForge — 通用知识笔记 LaTeX 模板
 %%  适用于：考研/考公/专业课/科研/项目/竞赛
-%%  编译方式：xelatex × 2~3 遍
+%%  编译方式：xelatex × 2 遍后清理 .aux/.log/.out/.toc 等辅助文件
+%%  使用 scripts/compile.sh（macOS/Linux）或 scripts/compile.bat（Windows）一键完成
 %% ══════════════════════════════════════════════════════════════════
 \documentclass[10pt,a4paper]{article}
 
@@ -10,6 +11,10 @@
 \usepackage{xeCJK}
 \setCJKmainfont{SimSun}
 \usepackage{indentfirst}
+
+%% ── 中文引号（重要） ──
+%% 必须使用 Unicode 弯引号：“”(U+201C/U+201D)，不可使用 ASCII 直引号 " (U+0022)
+%% 直引号在 xelatex 中渲染方向错误，编辑器中请设置自动替换直引号为弯引号
 
 %% ── 数学/公式（非理工科可移除） ──
 \usepackage{amsmath,amssymb,amsthm}
@@ -30,7 +35,7 @@
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathmorphing,patterns,arrows.meta}
 
-\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black}
+\hypersetup{hidelinks}
 
 %% ── 颜色系统（可按学科自定义） ──
 %%  理科风（深蓝） | 文科风（暗红） | 清新风（墨绿）
