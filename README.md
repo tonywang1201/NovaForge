@@ -32,6 +32,10 @@
 
 ## 📋 更新日志
 
+### 2026/5/17 14:30
+- **Skill 目录精简**：移除 .claude/skills/novaforge/ 冗余副本，skills/novaforge/SKILL.md 为唯一源文件；根目录新增 NovaForge.skill 独立下载入口；新增 scripts/install-skill.bat/sh 一键安装脚本
+- **TikZ 箭头标签防重叠规则**：SKILL.md 新增 alabel 样式强制规则，AI 生成 TikZ 时自动使用 alabel/alabel above/alabel below
+
 ### 2026/5/17 12:08
 - **修复箭头标签与目标重叠**：新增 alabel/alabel above/alabel below 三层 TikZ 样式（pos=0.4 + auto），在 preamble.tex 中全局生效，template.tex 中附使用示例
 - **改用标准 Skills 目录布局**：`NovaForge.skill` → `skills/novaforge/SKILL.md`、`.claude/skills/NovaForge.skill` → `.claude/skills/novaforge/SKILL.md`。让 ccswitch 等外部工具及 Claude Code 本地发现机制能按官方约定识别 skill
