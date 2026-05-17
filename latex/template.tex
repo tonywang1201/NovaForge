@@ -217,6 +217,21 @@
 <示例展示>
 \end{exampenv}
 
+%% ── 流程图/状态图示例（箭头标签防重叠） ──
+%% 使用 alabel 样式避免标签与目标重叠：
+%%
+%%   \begin{center}
+%%   \begin{tikzpicture}[node distance=2.5cm]
+%%     \node (A) {起点};
+%%     \node (B) [right of=A] {终点};
+%%     \draw[->] (A) -- node[alabel] {条件} (B);
+%%   \end{tikzpicture}
+%%   \end{center}
+%%
+%% 更多样式：alabel above（箭头上方偏左）、alabel below（箭头下方偏左）
+%% \draw[->] (A) -- node[alabel above] {条件} (B);
+%% \draw[->] (A) -- node[alabel below] {条件} (B);
+
 \knowtitle{1.5 真题/实战}
 
 \begin{exampenv}{<来源+年份+描述>}
